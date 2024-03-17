@@ -94,7 +94,7 @@
                 right: 15px;
             }
         </style>
-        
+
     </head>
 </head>
 <h1 id="header">TimeTable</h1>
