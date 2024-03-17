@@ -23,6 +23,7 @@ import java.util.ArrayList;
  * @author Admin
  */
 public class LoginController extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -63,15 +64,14 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
-            // Tìm giá trị lid từ danh sách giảng viên
             int lidToUse = -1; // Giá trị mặc định
             for (Lecturer lecturer : lecturers) {
-                if (lecturer.getName().equals(account.getUsername())) { 
+                if (lecturer.getName().equals(account.getUsername())) {
                     lidToUse = lecturer.getId();
                     break;
                 }
             }
-            // Sử dụng giá trị lid để chuyển hướng
+
             if (lidToUse != -1) {
                 HttpSession session = request.getSession();
                 session.setAttribute("account", account);
