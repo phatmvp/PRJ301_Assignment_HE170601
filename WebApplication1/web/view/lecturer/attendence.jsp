@@ -84,8 +84,10 @@
         <img src="https://upload.wikimedia.org/wikipedia/vi/2/2d/Logo_Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_FPT.svg"  />
         <div class="top-right">
             <a href="/PRJ301_Assignment_Last_HE170601/login">Logout</a> 
+            <a href="javascript:history.back()">Back</a>
         </div>
-        <form action="attendence" method="POST"> 
+        
+        <form action="att" method="POST"> 
             <input type="hidden" name="id" value="${param.id}"/>
             <table border="1px">
                 <tr>
@@ -100,17 +102,18 @@
                         <td>${a.student.id}</td>
                         <td>${a.student.name}</td>
                         <td>
-                            ${a.present}
                             <input type="radio" 
-                                   ${!a.present ?"checked=\"checked\"":""}
-                                   name="present${a.student.id}" value="no"  /> No
+                                   ${!a.present?"checked=\"checked\"":""}
+                                   name="present${a.student.id}" value="no"/> No
                             <input type="radio" 
-                                   ${a.present ?"checked=\"checked\"":""}
-                                   name="present${a.student.id}" value ="yes" /> Yes
+                                   ${a.present?"checked=\"checked\"":""}
+                                   name="present${a.student.id}" value="yes"/> Yes
                         </td>
-                        <td><input name="description${a.student.id}" type="text" value="${a.description}"></td>
+                        <td>
+                            <input type="text" name="description${a.student.id}" value="${a.description}"/>
+                        </td>
                         <td>${a.time}</td>
-                    </tr> 
+                    </tr>    
                 </c:forEach>
             </table>
             <input type="submit" value="Save"/>

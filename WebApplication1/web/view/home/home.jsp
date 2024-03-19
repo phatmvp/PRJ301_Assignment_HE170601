@@ -55,7 +55,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/vi/2/2d/Logo_Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_FPT.svg" class="center-image">
             <div class="links">
                 <a href="/PRJ301_Assignment_Last_HE170601/lecturer/timetable?id=1">TimeTable</a>
-                <a href="/PRJ301_Assignment_Last_HE170601/lecturer/attendence?id=1">Attendence</a>
+                <a href="/PRJ301_Assignment_Last_HE170601/lecturer/att?id=1">Attendence</a>
                 <a href="/PRJ301_Assignment_Last_HE170601/login">Logout</a>
             </div>
         </div>

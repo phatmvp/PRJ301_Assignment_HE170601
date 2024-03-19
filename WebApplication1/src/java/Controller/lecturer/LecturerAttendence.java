@@ -5,9 +5,7 @@
 package Controller.lecturer;
 
 import Controller.Authentication.BaseRBACController;
-import dal.AttendenceDBContext;
 import dal.LessionDBContext;
-import dal.StudentDBContext;
 import entity.Account;
 import entity.Attendence;
 import entity.Lession;
@@ -25,34 +23,33 @@ import java.util.ArrayList;
  *
  * @author Admin
  */
-public class LecturerAttendenceController extends BaseRBACController {
+public class LecturerAttendence extends BaseRBACController {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         int leid = Integer.parseInt(req.getParameter("id"));
-        StudentDBContext stuDB = new StudentDBContext();
-        ArrayList<Student> students = stuDB.getByLession(leid);
+        LessionDBContext db = new LessionDBContext();
+        ArrayList<Student> students = db.getStudentsByLession(leid);
         ArrayList<Attendence> atts = new ArrayList<>();
         Lession lession = new Lession();
         lession.setId(leid);
         for (Student student : students) {
-            Attendence attendence = new Attendence();
-            attendence.setLession(lession);
-            attendence.setStudent(student);
-            attendence.setPresent(req.getParameter("present" + student.getId()).equals("yes"));
-            attendence.setDescription(req.getParameter("description" + student.getId()));
-            atts.add(attendence);
+            Attendence a = new Attendence();
+            a.setLession(lession);
+            a.setStudent(student);
+            a.setDescription(req.getParameter("description" + student.getId()));
+            a.setPresent(req.getParameter("present" + student.getId()).equals("yes"));
+            atts.add(a);
         }
-        AttendenceDBContext db = new AttendenceDBContext();
-        db.batchupdateByLession(leid, atts);
-        resp.sendRedirect("attendence?id=" + leid);
+        db.takeAttendances(leid, atts);
+        resp.sendRedirect("att?id=" + leid);
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp, Account account, ArrayList<Role> roles) throws ServletException, IOException {
         int leid = Integer.parseInt(req.getParameter("id"));
         LessionDBContext db = new LessionDBContext();
-        ArrayList<Attendence> atts = db.getAttendencesBy(leid);
+        ArrayList<Attendence> atts = db.getAttendencesByLession(leid);
         req.setAttribute("atts", atts);
         req.getRequestDispatcher("../view/lecturer/attendence.jsp").forward(req, resp);
     }
