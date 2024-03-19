@@ -64,6 +64,10 @@ public class LoginController extends HttpServlet {
                 response.addCookie(c_pass);
                 response.addCookie(c_user);
             }
+            
+            response.sendRedirect("view/home/home.jsp");
+            
+            /*
             int lidToUse = -1; // Giá trị mặc định
             for (Lecturer lecturer : lecturers) {
                 if (lecturer.getName().equals(account.getUsername())) {
@@ -79,6 +83,7 @@ public class LoginController extends HttpServlet {
             } else {
                 response.getWriter().print("you do not have access");
             }
+            */
 
         } else {
             //login failed!

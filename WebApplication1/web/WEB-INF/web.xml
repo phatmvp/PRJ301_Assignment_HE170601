@@ -20,6 +20,10 @@
         <servlet-name>TimeTable</servlet-name>
         <servlet-class>Controller.Student.TimeTable</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <servlet-class>Controller.home.Home</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TimeTableController</servlet-name>
         <url-pattern>/lecturer/timetable</url-pattern>
@@ -40,7 +44,20 @@
         <servlet-name>TimeTable</servlet-name>
         <url-pattern>/student/timetable</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>20</session-timeout>
     </session-config>
+    <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>AuthenticationFilter.AuthenticationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern> 
+    </filter-mapping>
 </web-app>
+
